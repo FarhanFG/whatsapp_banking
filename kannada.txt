@@ -1,0 +1,110 @@
+{
+    "welcome_message": "ಪ್ರಿಯ {user_name}, ನ್ಯಾಷನಲ್ ಕೋ-ಆಪರೇಟಿವ್ ಬ್ಯಾಂಕ್‌ಗೆ ಸ್ವಾಗತ",
+    "select_options": "ದಯವಿಟ್ಟು ಆಯ್ಕೆಗಳನ್ನು ಆರಿಸಿ",
+    "menu": {
+        "account_services": {
+            "title": "ಖಾತೆ ಸೇವೆಗಳು",
+            "subtitle": "ದಯವಿಟ್ಟು ಕೆಳಗಿನ ಆಯ್ಕೆಯನ್ನು ಆರಿಸಿ",
+            "options": [
+                {"title": "ಬ್ಯಾಲೆನ್ಸ್", "postbackText": "BALENG"},
+                {"title": "ಇತ್ತೀಚಿನ 7 ವಹಿವಾಟುಗಳು", "postbackText": "USER002"},
+                {"title": "ಖಾತೆ ವಿವರಣೆ", "postbackText": "BILLS"}
+            ]
+        },
+        "loan_services": {
+            "title": "ಸಾಲದ ಸೇವೆ",
+            "subtitle": "ದಯವಿಟ್ಟು ಸೇವೆಯನ್ನು ಆರಿಸಿ",
+            "options": [
+                {"title": "EMI ಪಾವತಿ", "postbackText": "DEL"},
+                {"title": "ಸಾಲದ ವಿವರಣೆ", "postbackText": "ADD"}
+            ]
+        },
+        "fd_bills": {
+            "title": "FD ಮತ್ತು ಬಿಲ್‌ಗಳು",
+            "subtitle": "ದಯವಿಟ್ಟು ಸೇವೆಯನ್ನು ಆರಿಸಿ",
+            "options": [
+                {"title": "FD ಗೆ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ", "postbackText": "DooDu"},
+                {"title": "ಬಿಲ್ ಪಾವತಿಗಳು", "postbackText": "DANK"}
+            ]
+        },
+        "other_services": {
+            "title": "ಇತರ ಸೇವೆಗಳು",
+            "subtitle": "ದಯವಿಟ್ಟು ಸೇವೆಯನ್ನು ಆರಿಸಿ",
+            "options": [
+                {"title": "ಚೆಕ್ ಮತ್ತು ಪಾಸ್‌ಬುಕ್", "postbackText": "PERCIS"},
+                {"title": "ಭಾಷೆ ಬದಲಾಯಿಸಿ", "postbackText": "WLANG"},
+                {"title": "ಕಾರ್ಡ್ ಸೇವೆಗಳು", "postbackText": "SETWET"}
+            ]
+        }
+    },
+    "messages": {
+        "registration": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಬ್ಯಾಂಕ್‌ನೊಂದಿಗೆ ವಾಟ್ಸಾಪ್ ಸೇವೆಗೆ ನೋಂದಾಯಿಸಿಕೊಳ್ಳಿ",
+        "balance": "ನಿಮ್ಮ ಸಕ್ರಿಯ ಖಾತೆ AC0283XXX ವಿವರಗಳು - ಲಭ್ಯವಿರುವ ಬ್ಯಾಲೆನ್ಸ್ INR {balance:.2f}",
+        "balance_error": "ಬ್ಯಾಲೆನ್ಸ್ ಪಡೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+        "recent_transactions": "ನಿಮ್ಮ ಖಾತೆಯ ಇತ್ತೀಚಿನ 7 ವಹಿವಾಟುಗಳು",
+        "account_statement": "ನಿಮ್ಮ ಖಾತೆ ವಿವರಣೆ",
+        "emi_payment": "EMI ಪಾವತಿ ಪುಟ",
+        "password_reset": "ಪಾಸ್‌ವರ್ಡ್ ರೀಸೆಟ್ ಪುಟ",
+        "enter_bill": "ಬಿಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ",
+        "loan_statement": "ಸಾಲದ ವಿವರಣೆ",
+        "fd_scheme": "8.5% ಆಫರ್ ಮಾಡುವ ಫಿಕ್ಸ್ಡ್ ಡಿಪಾಸಿಟ್ ಯೋಜನೆ",
+        "fd_nominee": "ಡೀಫಾಲ್ಟ್ ನಾಮಿನಿ: ಪತ್ನಿ",
+        "request_sent": "ವಿನಂತಿ ಕಳುಹಿಸಲಾಗಿದೆ",
+        "enter_cheque": "12 ಅಂಕಿಗಳ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ, ನಂತರ STOP ಅಥವಾ ISSUE",
+        "outstanding_amount": "ಬಾಕಿ ಮೊತ್ತ Rs 3000, ದಯವಿಟ್ಟು ಕಳುಹಿಸಿದ OTP ಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ",
+        "payment_success": "ಪಾವತಿ ಯಶಸ್ವಿ! Rs 3000 ಕಡಿತಗೊಳಿಸಲಾಗಿದೆ. ಹೊಸ ಬ್ಯಾಲೆನ್ಸ್: Rs {new_balance:.2f}",
+        "insufficient_balance": "ಈ ವಹಿವಾಟಿಗೆ ಅಪರ್ಯಾಪ್ತ ಬ್ಯಾಲೆನ್ಸ್.",
+        "invalid_otp": "ಅಮಾನ್ಯ OTP. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+        "language_changed": {
+            "HINDI": "भाषा बदलकर हिंदी हो गई",
+            "ENGLISH": "Language changed to English",
+            "KANNADA": "ಭಾಷೆಯನ್ನು ಕನ್ನಡಕ್ಕೆ ಬದಲಾಯಿಸಲಾಗಿದೆ",
+            "MARATHI": "भाषा मराठी मध्ये बदलली"
+        },
+        "language_update_error": "ಭಾಷೆಯನ್ನು ನವೀಕರಿಸಲು ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+    },
+    "bill_payment": {
+        "title": "ಬಿಲ್ ಪಾವತಿ ಸೇವೆಗಳು",
+        "body": "ದಯವಿಟ್ಟು ಪಾವತಿಸಲು ಬಿಲ್ ಆಯ್ಕೆಮಾಡಿ",
+        "utility_bills": {
+            "title": "ಉಪಯುಕ್ತತೆ ಬಿಲ್‌ಗಳು",
+            "subtitle": "ಪಾವತಿಸಲು ಉಪಯುಕ್ತತೆ ಬಿಲ್ ಆಯ್ಕೆಮಾಡಿ",
+            "options": [
+                {"title": "ವಿದ್ಯುತ್ ಬಿಲ್", "postbackText": "ELEC"},
+                {"title": "ನೀರಿನ ಬಿಲ್", "postbackText": "WATER"}
+            ]
+        },
+        "vehicle_bills": {
+            "title": "ವಾಹನ ಬಿಲ್‌ಗಳು",
+            "subtitle": "ವಾಹನ ಸಂಬಂಧಿತ ಬಿಲ್ ಆಯ್ಕೆಮಾಡಿ",
+            "options": [
+                {"title": "ಫಾಸ್ಟ್‌ಟ್ಯಾಗ್ ರೀಚಾರ್ಜ್", "postbackText": "FAST"}
+            ]
+        }
+    },
+    "settings": {
+        "title": "ಖಾತೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+        "body": "ದಯವಿಟ್ಟು ಒಂದು ಆಯ್ಕೆಯನ್ನು ಆರಿಸಿ",
+        "security": {
+            "title": "ಭದ್ರತಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+            "subtitle": "ನಿಮ್ಮ ಖಾತೆ ಭದ್ರತೆಯನ್ನು ನಿರ್ವಹಿಸಿ",
+            "options": [
+                {"title": "ಸೇವೆಯನ್ನು ಫ್ರೀಜ್ ಮಾಡಿ", "postbackText": "FREEZE"},
+                {"title": "ಪಿನ್ ರೀಸೆಟ್ ಮಾಡಿ", "postbackText": "RESETPIN"}
+            ]
+        }
+    },
+    "language_menu": {
+        "title": "ದಯವಿಟ್ಟು ಭಾಷೆಯನ್ನು ಬದಲಾಯಿಸಿ",
+        "body": "ದಯವಿಟ್ಟು ಆಯ್ಕೆಗಳನ್ನು ಆರಿಸಿ",
+        "languages": {
+            "title": "ಭಾಷೆಗಳು",
+            "subtitle": "ದಯವಿಟ್ಟು ಸೇವೆಯನ್ನು ಆರಿಸಿ",
+            "options": [
+                {"title": "ENGLISH", "postbackText": "xcd123"},
+                {"title": "ಕನ್ನಡ", "postbackText": "dtsi"},
+                {"title": "हिन्दी", "postbackText": "tracking123"}
+            ]
+        }
+    }
+}

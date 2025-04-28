@@ -1,0 +1,58 @@
+        "payment_success": "भरणा यशस्वी! Rs 3000 वजा केले आहेत. नवीन शिल्लक: Rs {new_balance:.2f}",
+        "insufficient_balance": "या व्यवहारासाठी अपुरी शिल्लक.",
+        "invalid_otp": "अवैध OTP. कृपया पुन्हा प्रयत्न करा.",
+        "language_changed": {
+            "HINDI": "भाषा बदलकर हिंदी हो गई",
+            "ENGLISH": "Language changed to English",
+            "KANNADA": "ಭಾಷೆಯನ್ನು ಕನ್ನಡಕ್ಕೆ ಬದಲಾಯಿಸಲಾಗಿದೆ",
+            "MARATHI": "भाषा मराठी मध्ये बदलली"
+        },
+        "language_update_error": "भाषा अपडेट करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा."
+    },
+    "bill_payment": {
+        "title": "बिल भरणा सेवा",
+        "body": "कृपया भरण्यासाठी बिल निवडा",
+        "utility_bills": {
+            "title": "उपयोगिता बिले",
+            "subtitle": "भरण्यासाठी उपयोगिता बिल निवडा",
+            "options": [
+                {"title": "वीज बिल", "postbackText": "ELEC"},
+                {"title": "पाणी बिल", "postbackText": "WATER"}
+            ]
+        },
+        "vehicle_bills": {
+            "title": "वाहन बिले",
+            "subtitle": "वाहन संबंधित बिल निवडा",
+            "options": [
+                {"title": "फास्टॅग रिचार्ज", "postbackText": "FAST"}
+            ]
+        }
+    },
+    "settings": {
+        "title": "खाते सेटिंग्ज",
+        "body": "कृपया एक पर्याय निवडा",
+        "security": {
+            "title": "सुरक्षा सेटिंग्ज",
+            "subtitle": "आपले खाते सुरक्षा व्यवस्थापित करा",
+            "options": [
+                {"title": "सेवा फ्रीज करा", "postbackText": "FREEZE"},
+                {"title": "पिन रीसेट करा", "postbackText": "RESETPIN"},
+                {"title": "FD साठी अर्ज करा", "postbackText": "FD"}
+            ]
+        }
+    },
+    "language_menu": {
+        "title": "कृपया भाषा बदला",
+        "body": "कृपया पर्याय निवडा",
+        "languages": {
+            "title": "भाषा",
+            "subtitle": "कृपया सेवा निवडा",
+            "options": [
+                {"title": "ENGLISH", "postbackText": "xcd123"},
+                {"title": "ಕನ್ನಡ", "postbackText": "dtsi"},
+                {"title": "हिन्दी", "postbackText": "tracking123"},
+                {"title": "मराठी", "postbackText": "vlsi"}
+            ]
+        }
+    }
+}
