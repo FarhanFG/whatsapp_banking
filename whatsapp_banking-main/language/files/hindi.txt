@@ -1,0 +1,110 @@
+{
+    "welcome_message": "प्रिय {user_name}, नेशनल को-ऑपरेटिव बैंक में आपका स्वागत है",
+    "select_options": "कृपया विकल्प चुनें",
+    "menu": {
+        "account_services": {
+            "title": "खाता सेवाएं",
+            "subtitle": "कृपया नीचे दिए गए विकल्प का चयन करें",
+            "options": [
+                {"title": "बैलेंस", "postbackText": "BALENG"},
+                {"title": "हाल के 7 लेनदेन", "postbackText": "USER002"},
+                {"title": "खाता विवरण", "postbackText": "BILLS"}
+            ]
+        },
+        "loan_services": {
+            "title": "ऋण सेवा",
+            "subtitle": "कृपया सेवा का चयन करें",
+            "options": [
+                {"title": "EMI भुगतान", "postbackText": "DEL"},
+                {"title": "ऋण विवरण", "postbackText": "ADD"}
+            ]
+        },
+        "fd_bills": {
+            "title": "FD और बिल",
+            "subtitle": "कृपया सेवा का चयन करें",
+            "options": [
+                {"title": "FD के लिए आवेदन करें", "postbackText": "DooDu"},
+                {"title": "बिल भुगतान", "postbackText": "DANK"}
+            ]
+        },
+        "other_services": {
+            "title": "अन्य सेवाएं",
+            "subtitle": "कृपया सेवा का चयन करें",
+            "options": [
+                {"title": "चेक और पासबुक", "postbackText": "PERCIS"},
+                {"title": "भाषा बदलें", "postbackText": "WLANG"},
+                {"title": "कार्ड सेवाएं", "postbackText": "SETWET"}
+            ]
+        }
+    },
+    "messages": {
+        "registration": "कृपया अपने बैंक के साथ व्हाट्सएप सेवा के लिए पंजीकरण करें",
+        "balance": "आपके सक्रिय खाते AC0283XXX का विवरण - उपलब्ध शेष राशि INR {balance:.2f}",
+        "balance_error": "बैलेंस प्राप्त करने में असमर्थ। कृपया बाद में पुनः प्रयास करें।",
+        "recent_transactions": "आपके खाते के हाल के 7 लेनदेन",
+        "account_statement": "आपका खाता विवरण",
+        "emi_payment": "EMI भुगतान पृष्ठ",
+        "password_reset": "पासवर्ड रीसेट पृष्ठ",
+        "enter_bill": "बिल नंबर दर्ज करें",
+        "loan_statement": "ऋण विवरण",
+        "fd_scheme": "8.5% की पेशकश वाली फिक्स्ड डिपॉजिट योजना",
+        "fd_nominee": "डिफ़ॉल्ट नामांकित: पत्नी",
+        "request_sent": "अनुरोध भेजा गया",
+        "enter_cheque": "12 अंकों की संख्या दर्ज करें, उसके बाद STOP या ISSUE",
+        "outstanding_amount": "बकाया राशि Rs 597 है, कृपया भेजा गया OTP साझा करें",
+        "payment_success": "भुगतान सफल! Rs 597  काट लिए गए हैं। नई शेष राशि: Rs {new_balance:.2f}",
+        "insufficient_balance": "इस लेनदेन के लिए अपर्याप्त शेष राशि।",
+        "invalid_otp": "अमान्य OTP। कृपया पुनः प्रयास करें।",
+        "language_changed": {
+            "HINDI": "भाषा बदलकर हिंदी हो गई",
+            "ENGLISH": "Language changed to English",
+            "KANNADA": "ಭಾಷೆಯನ್ನು ಕನ್ನಡಕ್ಕೆ ಬದಲಾಯಿಸಲಾಗಿದೆ",
+            "MARATHI": "भाषा मराठी मध्ये बदलली"
+        },
+        "language_update_error": "भाषा अपडेट करने में विफल। कृपया पुनः प्रयास करें।"
+    },
+    "bill_payment": {
+        "title": "बिल भुगतान सेवाएं",
+        "body": "कृपया भुगतान करने के लिए बिल चुनें",
+        "utility_bills": {
+            "title": "उपयोगिता बिल",
+            "subtitle": "भुगतान करने के लिए उपयोगिता बिल चुनें",
+            "options": [
+                {"title": "बिजली बिल", "postbackText": "ELEC"},
+                {"title": "पानी का बिल", "postbackText": "WATER"}
+            ]
+        },
+        "vehicle_bills": {
+            "title": "वाहन बिल",
+            "subtitle": "वाहन संबंधित बिल चुनें",
+            "options": [
+                {"title": "फास्टैग रिचार्ज", "postbackText": "FAST"}
+            ]
+        }
+    },
+    "settings": {
+        "title": "खाता सेटिंग्स",
+        "body": "कृपया एक विकल्प चुनें",
+        "security": {
+            "title": "सेटिंग्स",
+            "subtitle": "अपनी खाता सुरक्षा प्रबंधित करें",
+            "options": [
+                {"title": "सेवा फ्रीज करें", "postbackText": "FREEZE"},
+                {"title": "पिन रीसेट करें", "postbackText": "RESETPIN"}
+            ]
+        }
+    },
+    "language_menu": {
+        "title": "कृपया भाषा बदलें",
+        "body": "कृपया विकल्प चुनें",
+        "languages": {
+            "title": "भाषाएं",
+            "subtitle": "कृपया सेवा का चयन करें",
+            "options": [
+                {"title": "ENGLISH", "postbackText": "xcd123"},
+                {"title": "ಕನ್ನಡ", "postbackText": "dtsi"},
+                {"title": "हिन्दी", "postbackText": "tracking123"}
+            ]
+        }
+    }
+}
