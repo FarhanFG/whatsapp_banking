@@ -12,7 +12,14 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy import create_engine, Column, Integer, Text, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
-XDATABASE_URL = "postgresql://dev_cbs_admin:Finovate%402023@13.126.242.31:5432/cr_dev"
+import os
+from dotenv import load_dotenv
+# Load environment variables
+load_dotenv()
+
+# Database connection string using environment variables
+XDATABASE_URL = f"postgresql://{os.getenv('CR_DB_USER')}:{os.getenv('CR_DB_PASSWORD')}@{os.getenv('CR_DB_HOST')}:{os.getenv('CR_DB_PORT', '5432')}/{os.getenv('CR_DB_NAME')}"
+
 # Create the SQLAlchemy engine and sessionmaker for PostgreSQL
 engine = create_engine(XDATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -33,15 +40,12 @@ Base.metadata.create_all(bind=engine)
 
 # Database connection
 def get_db_connection():
-    import os
-    from dotenv import load_dotenv
-    load_dotenv()
-    
+   
     return psycopg2.connect(
-        host=os.getenv('DB_HOST', '13.126.242.31'),
-        database=os.getenv('DB_NAME', 'whatzapp'),
-        user=os.getenv('DB_USER', 'far'),
-        password=os.getenv('DB_PASSWORD', 'Finovate@2023')
+        host=os.getenv('DB_HOST'),
+        database=os.getenv('DB_NAME'),
+        user=os.getenv('DB_USER'),
+        password=os.getenv('DB_PASSWORD')
     )
 
 # Create users table if it doesn't exist
@@ -217,15 +221,15 @@ def send_whatsapp_message(message, destination_number):
     
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'apikey': 'ioy3vumnhkwcvnttsaz8p4t1flnuheyk'
+        'apikey': os.getenv('WHATSAPP_API_KEY')
     }
     
     payload = {
         'channel': 'whatsapp',
-        'source': '917834811114',
+        'source': os.getenv('WHATSAPP_SOURCE'),
         'destination': destination_number,
         'message': f'{{"type": "text", "text": "{message}", "previewUrl": false}}',
-        'src.name': 'Demofinovate'
+        'src.name': os.getenv('WHATSAPP_SRC_NAME')
     }
     
     response = requests.post(url, headers=headers, data=payload)
@@ -253,9 +257,9 @@ async def ten(Dest):
     
     payload = {
         "channel": "whatsapp",
-        "source": "917834811114",
+        "source": os.getenv('WHATSAPP_SOURCE'),
         "destination": Dest,
-        "src.name": "Demofinovate",
+        "src.name": os.getenv('WHATSAPP_SRC_NAME'),
         "message": {
             "type": "list",
             "title": title,
@@ -267,7 +271,7 @@ async def ten(Dest):
     }
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
-        "apikey": "ioy3vumnhkwcvnttsaz8p4t1flnuheyk"
+        "apikey": os.getenv('WHATSAPP_API_KEY')
     }
     async with httpx.AsyncClient() as client:
         response = await client.post(url, params=payload, headers=headers)
@@ -279,11 +283,11 @@ def send_whatsapp_message_lan(destination, message_body, footer, header, button_
     headers = {
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/x-www-form-urlencoded',
-        'apikey': 'ioy3vumnhkwcvnttsaz8p4t1flnuheyk',
+        'apikey': os.getenv('WHATSAPP_API_KEY'),
     }
     payload = {
         'channel': 'whatsapp',
-        'source': '917834811114',
+        'source': os.getenv('WHATSAPP_SOURCE'),
         'destination': destination,
         'message': f'{{"type":"quick_reply","content":{{"type":"text","text":"{message_body}","caption":"{footer}","header":"{header}"}},"options":[{{"title":"{button_title}","postbackText":"{tracking_text}"}}]}}',
         'src.name': src_name
@@ -298,15 +302,15 @@ def send_whatsapp_message_attach(message, destination_number):
     
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'apikey': 'ioy3vumnhkwcvnttsaz8p4t1flnuheyk'
+        'apikey': os.getenv('WHATSAPP_API_KEY')
     }
     
     payload = {
         'channel': 'whatsapp',
-        'source': '917834811114',
+        'source': os.getenv('WHATSAPP_SOURCE'),
         'destination': destination_number,
         'message': f'{{"type": "text", "text": "https://plum-stephie-67.tiiny.site/", "previewUrl": true}}',
-        'src.name': 'Demofinovate'
+        'src.name': os.getenv('WHATSAPP_SRC_NAME')
     }
     
     response = requests.post(url, headers=headers, data=payload)
@@ -321,15 +325,15 @@ def send_whatsapp_message_attach_2(message, destination_number):
     
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'apikey': 'ioy3vumnhkwcvnttsaz8p4t1flnuheyk'
+        'apikey': os.getenv('WHATSAPP_API_KEY')
     }
     
     payload = {
         'channel': 'whatsapp',
-        'source': '917834811114',
+        'source': os.getenv('WHATSAPP_SOURCE'),
         'destination': destination_number,
         'message': f'{{"type": "text", "text": "https://pdfupload.io/docs/5319d0fb", "previewUrl": true}}',
-        'src.name': 'Demofinovate'
+        'src.name': os.getenv('WHATSAPP_SRC_NAME')
     }
     
     response = requests.post(url, headers=headers, data=payload)
@@ -344,15 +348,15 @@ def send_whatsapp_message_attach_1(message, destination_number):
     
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'apikey': 'ioy3vumnhkwcvnttsaz8p4t1flnuheyk'
+        'apikey': os.getenv('WHATSAPP_API_KEY')
     }
     
     payload = {
         'channel': 'whatsapp',
-        'source': '917834811114',
+        'source': os.getenv('WHATSAPP_SOURCE'),
         'destination': destination_number,
         'message': f'{{"type": "text", "text": "https://pdfupload.io/docs/5b8e8d41", "previewUrl": true}}',
-        'src.name': 'Demofinovate'
+        'src.name': os.getenv('WHATSAPP_SRC_NAME')
     }
     
     response = requests.post(url, headers=headers, data=payload)
@@ -367,15 +371,15 @@ def send_whatsapp_message_pay(message, destination_number):
     
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'apikey': 'ioy3vumnhkwcvnttsaz8p4t1flnuheyk'
+        'apikey': os.getenv('WHATSAPP_API_KEY')
     }
     
     payload = {
         'channel': 'whatsapp',
-        'source': '917834811114',
+        'source': os.getenv('WHATSAPP_SOURCE'),
         'destination': destination_number,
         'message': f'{{"type": "text", "text": "https://rzp.io/rzp/6tAlEUab", "previewUrl": true}}',
-        'src.name': 'Demofinovate'
+        'src.name': os.getenv('WHATSAPP_SRC_NAME')  
     }
     
     response = requests.post(url, headers=headers, data=payload)
@@ -391,15 +395,15 @@ def send_whatsapp_message_reset(message, destination_number):
     
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'apikey': 'ioy3vumnhkwcvnttsaz8p4t1flnuheyk'
+        'apikey': os.getenv('WHATSAPP_API_KEY')
     }
     
     payload = {
         'channel': 'whatsapp',
-        'source': '917834811114',
+        'source': os.getenv('WHATSAPP_SOURCE'),
         'destination': destination_number,
         'message': f'{{"type": "text", "text": "https://secure-pin-reset.vercel.app", "previewUrl": true}}',
-        'src.name': 'Demofinovate'
+        'src.name': os.getenv('WHATSAPP_SRC_NAME')  
     }
     
     response = requests.post(url, headers=headers, data=payload)
@@ -445,9 +449,9 @@ async def ben(Dest):
     
     payload = {
         "channel": "whatsapp",
-        "source": "917834811114",
+        "source": os.getenv('WHATSAPP_SOURCE'),
         "destination": Dest,
-        "src.name": "Demofinovate",
+        "src.name": os.getenv('WHATSAPP_SRC_NAME'),
         "message": {
             "type": "list",
             "title": title,
@@ -459,7 +463,7 @@ async def ben(Dest):
     }
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
-        "apikey": "ioy3vumnhkwcvnttsaz8p4t1flnuheyk"
+        "apikey": os.getenv('WHATSAPP_API_KEY')
     }
     
     async with httpx.AsyncClient() as client:
@@ -485,9 +489,9 @@ async def setting(Dest):
     
     payload = {
         "channel": "whatsapp",
-        "source": "917834811114",
+        "source": os.getenv('WHATSAPP_SOURCE'), 
         "destination": Dest,
-        "src.name": "Demofinovate",
+        "src.name": os.getenv('WHATSAPP_SRC_NAME'),
         "message": {
             "type": "list",
             "title": title,
@@ -499,7 +503,7 @@ async def setting(Dest):
     }
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
-        "apikey": "ioy3vumnhkwcvnttsaz8p4t1flnuheyk"
+        "apikey": os.getenv('WHATSAPP_API_KEY')
     }
     
     async with httpx.AsyncClient() as client:
@@ -531,9 +535,9 @@ async def billu(Dest):
     
     payload = {
         "channel": "whatsapp",
-        "source": "917834811114",
+        "source": os.getenv('WHATSAPP_SOURCE'),
         "destination": Dest,
-        "src.name": "Demofinovate",
+        "src.name": os.getenv('WHATSAPP_SRC_NAME'),
         "message": {
             "type": "list",
             "title": title,
@@ -577,9 +581,9 @@ async def benny(Dest):
     
     payload = {
         "channel": "whatsapp",
-        "source": "917834811114",
+        "source": os.getenv('WHATSAPP_SOURCE'),
         "destination": Dest,
-        "src.name": "Demofinovate",
+        "src.name": os.getenv('WHATSAPP_SRC_NAME'),
         "message": {
             "type": "list",
             "title": title,
@@ -591,7 +595,7 @@ async def benny(Dest):
     }
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
-        "apikey": "ioy3vumnhkwcvnttsaz8p4t1flnuheyk"
+        "apikey": os.getenv('WHATSAPP_API_KEY')
     }
     
     async with httpx.AsyncClient() as client:
@@ -617,113 +621,7 @@ async def add_passcode():
         return {"error": str(e)}
 
 # New API endpoint to get language counts
-@app.get("/language-counts")
-def get_language_counts():
-    conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=RealDictCursor)
-    
-    try:
-        # Query to count users by language
-        cur.execute("""
-            SELECT language, COUNT(*) as count 
-            FROM users 
-            GROUP BY language 
-            ORDER BY count DESC
-        """)
-        
-        results = cur.fetchall()
-        
-        # Convert to dictionary format
-        language_counts = {
-            "ENGLISH": 0,
-            "HINDI": 0,
-            "PUNJABI": 0,
-            "KANNADA": 0,
-            "MARATHI": 0
-        }
-        
-        # Update counts from database results
-        for row in results:
-            language = row['language']
-            count = row['count']
-            if language in language_counts:
-                language_counts[language] = count
-        
-        return {"language_counts": language_counts}
-    
-    except Exception as e:
-        print(f"Error getting language counts: {e}")
-        return {"error": str(e)}
-    
-    finally:
-        cur.close()
-        conn.close()
 
-# New API endpoint to get service utilization by age group
-@app.get("/age-group-utilization")
-def get_age_group_utilization():
-    conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=RealDictCursor)
-    
-    try:
-        # Query to count users by age group
-        cur.execute("""
-            SELECT 
-                CASE 
-                    WHEN age BETWEEN 18 AND 30 THEN '18-30'
-                    WHEN age BETWEEN 31 AND 40 THEN '31-40'
-                    WHEN age BETWEEN 41 AND 50 THEN '41-50'
-                    WHEN age BETWEEN 51 AND 60 THEN '51-60'
-                    WHEN age > 60 THEN 'above 60'
-                    ELSE 'unknown'
-                END as age_group,
-                COUNT(*) as count
-            FROM users
-            GROUP BY 
-                CASE 
-                    WHEN age BETWEEN 18 AND 30 THEN '18-30'
-                    WHEN age BETWEEN 31 AND 40 THEN '31-40'
-                    WHEN age BETWEEN 41 AND 50 THEN '41-50'
-                    WHEN age BETWEEN 51 AND 60 THEN '51-60'
-                    WHEN age > 60 THEN 'above 60'
-                    ELSE 'unknown'
-                END
-        """)
-        
-        results = cur.fetchall()
-        
-        # Convert to the new requested format - list of objects with Age and noofcustomer
-        age_group_data = []
-        
-        # Define all age groups to ensure they all appear in the response
-        age_groups = ['18-30', '31-40', '41-50', '51-60', 'above 60']
-        
-        # Create a dictionary to store counts by age group
-        counts_by_age = {age_group: 0 for age_group in age_groups}
-        
-        # Update counts from database results
-        for row in results:
-            age_group = row['age_group']
-            count = row['count']
-            if age_group in counts_by_age:
-                counts_by_age[age_group] = count
-        
-        # Convert to the requested format
-        for age_group in age_groups:
-            age_group_data.append({
-                "Age": age_group,
-                "noofcustomer": counts_by_age[age_group]
-            })
-        
-        return {"age_group_utilization": age_group_data}
-    
-    except Exception as e:
-        print(f"Error getting age group utilization: {e}")
-        return {"error": str(e)}
-    
-    finally:
-        cur.close()
-        conn.close()
 
 @app.get("/remove-passcode")
 async def remove_passcode():
@@ -820,7 +718,8 @@ async def read_root(request: Request):
         destination_number = Dest
         response = send_whatsapp_message(message, destination_number)
         print(response)
-        #await benny(Dest)
+        return Response(content="Message sent", status_code=200)
+        a#wait benny(Dest)
 
     elif "ADD" in str(data):
         Dest = data["payload"]["source"]
@@ -930,93 +829,218 @@ async def read_root(request: Request):
             response = send_whatsapp_message(error_message, Dest)
             
         await benny(Dest)
-    # Check for 12-digit number with Stop/ISSUE or 4/6 digit numbers
+    # Replace the text input handler in your app.py file with this code
     elif data["payload"]["type"] == "text":
         text = data["payload"]["payload"]["text"]
         Dest = data["payload"]["source"]
 
-        # Check for 12-digit number with Stop/ISSUE
-        if any(word.lower() in text.lower() for word in ["stop", "issue"]):
-            numbers = [num for num in text.split() if num.isdigit() and len(num) == 12]
-            if numbers:
-                message = MESSAGES["messages"]["request_sent"]
-                response = send_whatsapp_message(message, Dest)
-                print("WhatsApp message sent:", response)
-                await benny(Dest)
-                return Response(content="Message sent", status_code=200)
+    print(f"Received text message: '{text}' from {Dest}")
 
-        # Handle numeric inputs (4 or 6 digits)
-        if text.isdigit():
-            if len(text) == 6:
-                # Handle 6-digit check number
-                message = MESSAGES["messages"]["outstanding_amount"]
-                response = send_whatsapp_message(message, Dest)
-                print("WhatsApp message sent:", response)
-                
-                # Generate and store OTP
-                import random
-                otp = str(random.randint(1000, 9999))
-                conn = get_db_connection()
-                cur = conn.cursor()
-                cur.execute("""
-                    UPDATE users 
-                    SET latest_otp = %s 
-                    WHERE phone_number = %s
-                """, (otp, Dest))
-                conn.commit()
-                cur.close()
-                conn.close()
-                
-                # Send OTP via Twilio
-                import requests
-                url = 'https://api.twilio.com/2010-04-01/Accounts/AC7a5e6d3727d4e6cd8c66a619cc364aa2/Messages.json'
-                auth = ('AC7a5e6d3727d4e6cd8c66a619cc364aa2', '3f7e9ba092833226f054044d00a39c10')
-                data = {
-                    'To': '+919035576651',
-                    'From': '+16084077139',
-                    'Body': f'OTP for Transaction: {otp}'
-                }
-                twilio_response = requests.post(url, data=data, auth=auth)
-                print("Twilio Response:", twilio_response.json())
-                return Response(content="Message sent", status_code=200)
+    # Check for 12-digit number with Stop/ISSUE
+    if any(word.lower() in text.lower() for word in ["stop", "issue"]):
+        numbers = [num for num in text.split() if num.isdigit() and len(num) == 12]
+        if numbers:
+            message = MESSAGES["messages"]["request_sent"]
+            response = send_whatsapp_message(message, Dest)
+            print("WhatsApp message sent:", response)
+            await benny(Dest)
+            return Response(content="Message sent", status_code=200)
+
+    # Handle numeric inputs
+    if text.isdigit():
+        print(f"Processing numeric input: {text}")
+        
+        # For bill numbers (any numeric input that's not 4 digits)
+        if len(text) != 4:
+            print("Processing as bill number")
             
-            elif len(text) == 4:
-                # Handle 4-digit OTP verification
-                conn = get_db_connection()
-                cur = conn.cursor()
-                cur.execute("SELECT latest_otp, balance FROM users WHERE phone_number = %s", (Dest,))
-                result = cur.fetchone()
-                
-                if result and result[0] == text:
-                    stored_otp, current_balance = result[0], result[1]
-                    if current_balance >= 3000:
-                        new_balance = current_balance - 3000
-                        cur.execute("""
-                            UPDATE users 
-                            SET balance = %s, latest_otp = NULL 
-                            WHERE phone_number = %s
-                        """, (new_balance, Dest))
-                        conn.commit()
-                        message = MESSAGES["messages"]["payment_success"].format(new_balance=new_balance)
-                    else:
-                        message = MESSAGES["messages"]["insufficient_balance"]
+            # Send outstanding amount message
+            message = MESSAGES["messages"]["outstanding_amount"]
+            response = send_whatsapp_message(message, Dest)
+            print(f"Outstanding amount message sent: {response}")
+            
+            # Generate and store OTP
+            import random
+            otp = str(random.randint(1000, 9999))
+            print(f"Generated OTP: {otp}")
+            
+            conn = get_db_connection()
+            cur = conn.cursor()
+            cur.execute("""
+                UPDATE users 
+                SET latest_otp = %s 
+                WHERE phone_number = %s
+            """, (otp, Dest))
+            
+            if cur.rowcount == 0:
+                # Try alternative phone formats if update failed
+                if Dest.startswith('91'):
+                    phone_without_91 = Dest[2:]
+                    cur.execute("""
+                        UPDATE users 
+                        SET latest_otp = %s 
+                        WHERE phone_number = %s
+                    """, (otp, phone_without_91))
                 else:
-                    message = MESSAGES["messages"]["invalid_otp"]
+                    phone_with_91 = '91' + Dest
+                    cur.execute("""
+                        UPDATE users 
+                        SET latest_otp = %s 
+                        WHERE phone_number = %s
+                    """, (otp, phone_with_91))
+            
+            conn.commit()
+            cur.close()
+            conn.close()
+            print(f"OTP stored in database for user {Dest}")
+            
+            # Send OTP directly via WhatsApp instead of Twilio
+            otp_message = f"Your OTP for bill payment is: {otp}"
+            otp_response = send_whatsapp_message(otp_message, Dest)
+            print(f"OTP message sent via WhatsApp: {otp_response}")
+            
+            return Response(content="Message sent", status_code=200)
+        
+        # For 4-digit OTP verification
+        elif len(text) == 4:
+            print("Processing as OTP verification")
+            conn = get_db_connection()
+            cur = conn.cursor()
+            
+            # Try to find the user with the original phone number
+            cur.execute("SELECT latest_otp, balance FROM users WHERE phone_number = %s", (Dest,))
+            result = cur.fetchone()
+            
+            # If not found, try alternative phone formats
+            if not result:
+                if Dest.startswith('91'):
+                    phone_without_91 = Dest[2:]
+                    cur.execute("SELECT latest_otp, balance FROM users WHERE phone_number = %s", (phone_without_91,))
+                    result = cur.fetchone()
+                else:
+                    phone_with_91 = '91' + Dest
+                    cur.execute("SELECT latest_otp, balance FROM users WHERE phone_number = %s", (phone_with_91,))
+                    result = cur.fetchone()
+            
+            print(f"Database result for OTP verification: {result}")
+            
+            if result and result[0] == text:
+                stored_otp, current_balance = result[0], result[1] or 5000  # Default to 5000 if balance is None
                 
-                cur.close()
-                conn.close()
-                response = send_whatsapp_message(message, Dest)
-                print("Response message sent:", response)
-                return Response(content="Message sent", status_code=200)
+                if current_balance >= 597:  # Use the actual amount from the message
+                    new_balance = current_balance - 597
+                    cur.execute("""
+                        UPDATE users 
+                        SET balance = %s, latest_otp = NULL 
+                        WHERE phone_number = %s
+                    """, (new_balance, Dest))
+                    conn.commit()
+                    message = MESSAGES["messages"]["payment_success"].format(new_balance=new_balance)
+                else:
+                    message = MESSAGES["messages"]["insufficient_balance"]
+            else:
+                message = MESSAGES["messages"]["invalid_otp"]
+            
+            cur.close()
+            conn.close()
+            response = send_whatsapp_message(message, Dest)
+            print("Response message sent:", response)
+            
+            # Show the main menu after OTP verification
+            await benny(Dest)
+            return Response(content="Message sent", status_code=200)
+    
+    # If no special patterns match, show main menu
+    await ben(Dest)
+    return Response(content="Message sent", status_code=200)
+
+    # # Check for 12-digit number with Stop/ISSUE or 4/6 digit numbers
+    # elif data["payload"]["type"] == "text":
+    #     text = data["payload"]["payload"]["text"]
+    #     Dest = data["payload"]["source"]
+
+    #     # Check for 12-digit number with Stop/ISSUE
+    #     if any(word.lower() in text.lower() for word in ["stop", "issue"]):
+    #         numbers = [num for num in text.split() if num.isdigit() and len(num) == 12]
+    #         if numbers:
+    #             message = MESSAGES["messages"]["request_sent"]
+    #             response = send_whatsapp_message(message, Dest)
+    #             print("WhatsApp message sent:", response)
+    #             await benny(Dest)
+    #             return Response(content="Message sent", status_code=200)
+
+    #     # Handle numeric inputs (4 or 6 digits)
+    #     if text.isdigit():
+    #         if len(text) == 6:
+    #             # Handle 6-digit check number
+    #             message = MESSAGES["messages"]["outstanding_amount"]
+    #             response = send_whatsapp_message(message, Dest)
+    #             print("WhatsApp message sent:", response)
+                
+    #             # Generate and store OTP
+    #             import random
+    #             otp = str(random.randint(1000, 9999))
+    #             conn = get_db_connection()
+    #             cur = conn.cursor()
+    #             cur.execute("""
+    #                 UPDATE users 
+    #                 SET latest_otp = %s 
+    #                 WHERE phone_number = %s
+    #             """, (otp, Dest))
+    #             conn.commit()
+    #             cur.close()
+    #             conn.close()
+                
+    #             # Send OTP via Twilio
+    #             import requests
+    #             url = 'https://api.twilio.com/2010-04-01/Accounts/{os.getenv("TWILIO_ACCOUNT_SID")}/Messages.json'
+    #             auth = (os.getenv('TWILIO_ACCOUNT_SID'), os.getenv('TWILIO_AUTH_TOKEN'))
+    #             data = {
+    #                 'To': f'{+Dest}',
+    #                 'From': os.getenv('TWILIO_PHONE_NUMBER'),
+    #                 'Body': f'OTP for Transaction: {otp}'
+    #             }
+    #             twilio_response = requests.post(url, data=data, auth=auth)
+    #             print("Twilio Response:", twilio_response.json())
+    #             return Response(content="Message sent", status_code=200)
+            
+    #         elif len(text) == 4:
+    #             # Handle 4-digit OTP verification
+    #             conn = get_db_connection()
+    #             cur = conn.cursor()
+    #             cur.execute("SELECT latest_otp, balance FROM users WHERE phone_number = %s", (Dest,))
+    #             result = cur.fetchone()
+                
+    #             if result and result[0] == text:
+    #                 stored_otp, current_balance = result[0], result[1]
+    #                 if current_balance >= 3000:
+    #                     new_balance = current_balance - 3000
+    #                     cur.execute("""
+    #                         UPDATE users 
+    #                         SET balance = %s, latest_otp = NULL 
+    #                         WHERE phone_number = %s
+    #                     """, (new_balance, Dest))
+    #                     conn.commit()
+    #                     message = MESSAGES["messages"]["payment_success"].format(new_balance=new_balance)
+    #                 else:
+    #                     message = MESSAGES["messages"]["insufficient_balance"]
+    #             else:
+    #                 message = MESSAGES["messages"]["invalid_otp"]
+                
+    #             cur.close()
+    #             conn.close()
+    #             response = send_whatsapp_message(message, Dest)
+    #             print("Response message sent:", response)
+    #             return Response(content="Message sent", status_code=200)
 
         # If no special patterns match, show main menu
-        await ben(Dest)
-        return Response(content="Message sent", status_code=200)
-    else:
-        Dest = data["payload"]["source"]
-        await ben(Dest)
-        print("Function ben() executed for destination:", Dest)
-        return Response(content="Message sent", status_code=200)
+    #     await ben(Dest)
+    #     return Response(content="Message sent", status_code=200)
+    # else:
+    #     Dest = data["payload"]["source"]
+    #     await ben(Dest)
+    #     print("Function ben() executed for destination:", Dest)
+    #     return Response(content="Message sent", status_code=200)
 
 # Service Request model from new.py
 class ServiceRequest(BaseModel):
@@ -1066,16 +1090,6 @@ services = {
 }
 
 # Service endpoints from new.py
-@app.get("/services")
-def get_all_services():
-    return {"services": list(services.values())}
-
-@app.get("/{service_name}")
-def get_service(service_name: str):
-    service = services.get(service_name)
-    if not service:
-        return {"error": "Service not found"}
-    return service
 
 # Dependency to provide a database session for each request
 def get_db():
@@ -1100,56 +1114,6 @@ def read_notification(notification_id: int, db: Session = Depends(get_db)):
     return notification
 
 # New API endpoint to get table details
-@app.get("/table-details/{table_name}")
-def get_table_details(table_name: str):
-    conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=RealDictCursor)
-    
-    try:
-        # Get column information
-        cur.execute("""
-            SELECT column_name, data_type, character_maximum_length, 
-                   column_default, is_nullable
-            FROM information_schema.columns
-            WHERE table_name = %s
-            ORDER BY ordinal_position
-        """, (table_name,))
-        
-        columns = cur.fetchall()
-        
-        # Get row count
-        cur.execute(f"SELECT COUNT(*) as row_count FROM {table_name}")
-        row_count = cur.fetchone()['row_count']
-        
-        # Get sample data (first 5 rows)
-        cur.execute(f"SELECT * FROM {table_name} LIMIT 5")
-        sample_data = cur.fetchall()
-        
-        # Get primary key information
-        cur.execute("""
-            SELECT a.attname as column_name
-            FROM pg_index i
-            JOIN pg_attribute a ON a.attrelid = i.indrelid AND a.attnum = ANY(i.indkey)
-            WHERE i.indrelid = %s::regclass AND i.indisprimary
-        """, (table_name,))
-        
-        primary_keys = [row['column_name'] for row in cur.fetchall()]
-        
-        return {
-            "table_name": table_name,
-            "row_count": row_count,
-            "columns": columns,
-            "primary_keys": primary_keys,
-            "sample_data": sample_data
-        }
-    
-    except Exception as e:
-        print(f"Error getting table details: {e}")
-        return {"error": str(e)}
-    
-    finally:
-        cur.close()
-        conn.close()
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=False, log_level="debug",
